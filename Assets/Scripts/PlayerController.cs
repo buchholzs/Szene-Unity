@@ -4,8 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _speed = 2.5f;
-    [SerializeField] private float _rotationSpeed = 1.5f;
-    [SerializeField] private float _mouseSensitivity = 100.0f;
+    [SerializeField] private float _mouseSensitivity = 30.0f;
 
     private float _horizontal = 0.0f;
     private float _vertical = 0.0f;
@@ -44,12 +43,12 @@ public class PlayerController : MonoBehaviour
 
         _yRotation += _mouseX;
 
-        transform.localRotation = Quaternion.Euler(_xRotation, _yRotation, 0f);
     }
 
     private void FixedUpdate()
     {
         Vector3 movement = new Vector3(_horizontal, 0.0f, _vertical) * _speed;
         _rigidbody.linearVelocity = transform.TransformDirection(movement);
+        _rigidbody.transform.localRotation = Quaternion.Euler(_xRotation, _yRotation, 0f);
     }
 }

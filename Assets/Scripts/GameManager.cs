@@ -9,11 +9,6 @@ public class GameManager : MonoBehaviour
 
     private InputAction cancelAction;
 
-    public void Awake()
-    {
-        EnhancedTouchSupport.Enable();
-    }
-
     public void Start()
     {
         cancelAction = InputSystem.actions.FindAction("Cancel");
