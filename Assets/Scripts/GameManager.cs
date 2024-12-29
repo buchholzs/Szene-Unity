@@ -4,16 +4,22 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     public GameObject _pauseMenu = null;
+    public GameObject _startMenu = null;
+    public int targetFrameRate = 60; // Ziel-Framerate
 
-    private bool _isPaused = false;
+    private bool _isPaused = true;
+    public bool IsPaused => _isPaused; // Öffentliche Eigenschaft, um den Pausenstatus abzurufen
+
 
     private InputAction cancelAction;
 
-    public void Start()
+    public void Awake()
     {
+        Application.targetFrameRate = targetFrameRate; // Setzt die Ziel-Framerate
         cancelAction = InputSystem.actions.FindAction("Cancel");
         _pauseMenu.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
+        _startMenu.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void Update()
@@ -34,6 +40,13 @@ public class GameManager : MonoBehaviour
             }
             _isPaused = !_isPaused;
         }
+    }
+    public void OnStartButtonClick()
+    {
+        _isPaused = false;
+        _startMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1;
     }
     public void OnExitButtonClick()
     {
