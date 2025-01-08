@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     private InputAction cancelAction;
 
-    public void Awake()
+    public void Start()
     {
         Application.targetFrameRate = targetFrameRate; // Setzt die Ziel-Framerate
         cancelAction = InputSystem.actions.FindAction("Cancel");
@@ -51,5 +52,15 @@ public class GameManager : MonoBehaviour
     public void OnExitButtonClick()
     {
         Application.Quit();
+    }
+
+    public void OnLevel0ButtonClick()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void OnLevel1ButtonClick()
+    {
+        SceneManager.LoadScene(1);
     }
 }
