@@ -84,5 +84,5 @@ crashlytics-build.properties
 # Blender Backups
 Blender/*.blend1
 Blender/TieBomber.png
-Blender/RenderResult*.mkv
+Blender/*.mkv
 Blender/RenderResult*.png
